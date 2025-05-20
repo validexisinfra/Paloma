@@ -87,9 +87,6 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 
-print "Downloading snapshot..."
-curl -o - -L https://snapshots.polkachu.com/snapshots/paloma/paloma_37704864.tar.lz4 | lz4 -c -d - | tar -x -C $HOME/.paloma
-
 sudo systemctl daemon-reload
 sudo systemctl enable palomad
 sudo systemctl restart palomad
