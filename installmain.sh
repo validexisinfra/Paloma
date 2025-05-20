@@ -43,8 +43,10 @@ palomad config set client keyring-backend file
 palomad config set client node tcp://localhost:${CUSTOM_PORT}657
 palomad init $MONIKER --chain-id tumbler
 
-curl -Ls https://snapshots.kjnodes.com/paloma/genesis.json > $HOME/.paloma/config/genesis.json
-curl -Ls https://snapshots.kjnodes.com/paloma/addrbook.json > $HOME/.paloma/config/addrbook.json
+wget -O addrbook.json https://snapshots.polkachu.com/addrbook/paloma/addrbook.json --inet4-only
+mv addrbook.json ~/.paloma/config
+wget -O genesis.json https://snapshots.polkachu.com/genesis/paloma/genesis.json --inet4-only
+mv genesis.json ~/.paloma/config
 
 sed -i -e "s|^seeds *=.*|seeds = \"400f3d9e30b69e78a7fb891f60d76fa3c73f0ecc@paloma.rpc.kjnodes.com:11059\"|" $HOME/.paloma/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0ugrain\"|" $HOME/.paloma/config/app.toml
@@ -86,7 +88,7 @@ WantedBy=multi-user.target
 EOF
 
 print "Downloading snapshot..."
-curl -L https://snapshots.kjnodes.com/paloma/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.paloma
+curl -o - -L https://snapshots.polkachu.com/snapshots/paloma/paloma_37704864.tar.lz4 | lz4 -c -d - | tar -x -C $HOME/.paloma
 
 sudo systemctl daemon-reload
 sudo systemctl enable palomad
