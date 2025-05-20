@@ -1,7 +1,7 @@
 # Paloma
 Paloma is the fastest, secure crosschain communications blockchain. Paloma blockchain enables scalable, crosschain, smart contract execution with any data source.
 
-# 🌟 Uptick Setup & Upgrade Scripts
+# 🌟 Paloma Setup & Upgrade Scripts
 
 A collection of automated scripts for setting up and upgrading Paloma nodes on **Mainnet (`tumbler`)**.
 
